@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
 import './Components/Singlepages/Car_wash/Form2.css';
+import Rate from './Components/Rate';
 
 function Form() {
+  const [confirm, setConfirm] = useState('none');
+  const [error, setErorr] = useState('none');
+  ////////////
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -18,7 +22,6 @@ function Form() {
   // const [TimeErr,setTimeErr] = useState({});
 
 
-
   const name_handle = (e)=>{setName(e.target.value)}
   const phone_number = (e)=>{setPhone(e.target.value)}
 
@@ -28,14 +31,35 @@ function Form() {
   
   
   const auto_order_weekly = (e)=>{setAuto(e.target.value)}
-  const clickHandel = ()=>{
-    axios.post('http://localhost/carage/carage_backend/washing.php?name='+name+'&phone_number='+phone+'&car_type='+car_type+'&location='+location+'&wash_type='+order+'&auto_order_weekly='+auto_order+'&time_picker='+time_picker)
-    .then((data) => {
-        
-    })
+  const clickHandel = (e)=>{
+    e.preventDefault() 
+
+    if(name == '' || phone == '' ||car_type == '' ||location == '' ||order == '' )
+    {
+        setErorr('block')
+
+
+    }else
+    {
+
+    
+    axios.post('http://localhost/carage/carage_backend/washing.php?name='+name+'&phone_number='+phone+'&car_type='+car_type+'&location='+location+'&auto_order_weekly='+auto_order)
+    .then(
+      setConfirm('block') ,
+      setErorr('none'),
+      document.getElementById('name').value = "",
+      document.getElementById('address').value = "",
+      document.getElementById('phone').value = "",
+      document.getElementById('car_type').value = "",
+
+      document.getElementById('radio_15').checked = false,
+      document.getElementById('radio_16').checked = false
+
+    )
     .catch((error) => {
         console.error(error);
     });
+    }
 }
 
 
@@ -60,117 +84,125 @@ setNameErr(nameErr);
 
 
 }
-  return (
-    <div>
-    
-        <button onClick={showFormm}value='showForm' >Order</button>
-     
 
-      {showForm && (
-        <>
+return(
+
+  <div className="testbox">
+    <form action="/" id='order-form'>
+      {/* <div className="banner">
+        <h1>Volunteer Signup</h1>
+      </div>
+      <br />
+      <p>
+        The HELP Group is seeking volunteers to serve our community. Fill in the
+        information below to indicate how you would like to become involved.
+      </p>
+      <br /> */}
+      <div className="colums">
+        <div className="item">
+          <label htmlFor="name">
+            Name<span>*</span>
+          </label>
+          <input id="name" type="text" name="name" required=""  onChange={name_handle}/>
+        </div>
+        <div className="item">
+          <label htmlFor="address">
+             Address<span>*</span>
+          </label>
+          <input id="address" type="text" name="address" required=""  onChange={locationn}/>
+        </div>
+        <div className="item">
+          <label htmlFor="phone">
+            Phone<span>*</span>
+          </label>
+          <input id="phone" type="tel" name="phone" required=""  onChange={phone_number}  />
+        </div>
+
+        <div class="item">
+        <label htmlFor="phone">
+            Car Type<span>*</span>
+          </label>
+          <select onChange={car_typee} id="car_type"> 
+            <option selected value="" disabled ></option> 
+            <option value="C" >Coupe</option>
+            <option value="M">Micro</option>
+            <option value="v">Vans</option>
+            <option value="mv">Minivan</option>
+            <option value="p">Pickup</option>
+            <option value="t">Truck</option>
+            <option value="bt"> Big Truck</option>
+          </select>
+        </div>
+      
+      
+        
+      </div>
+
+      
 
 
          
-<div className="main-block">
-  <h1>Car Wash Form</h1>
-    <div className="info">
- 
-    <label>Name</label>      
-    <input type={'text'} value ={name} onChange={(e)=>{setName(e.target.value)}}  placeholder="Full Name" />
-<br/>{Object.keys(nameErr).map((key)=>
-   <div style={{color :"red"}}>{nameErr[key]}</div>)
-}
-    {/* <input type={'text'} onChange={name_handle}  placeholder="Full Name" /> */}
-
-    <input type={'number'} onChange={phone_number}  placeholder="Phone number" />
-      <input type={'text'} onChange={locationn}  placeholder="Event location" />
-   
-      <select onChange={car_typee}>  
-        Type of Car
-        <option  type='text' value="Sedan" >Sedan</option>
-        <option  type='text' value="CUV" >CUV</option>
-        <option  type='text' value="Hatchback">Hatchback</option>
-        <option  type='text' value="Coupe"> Coupe</option>
-        <option  type='text' value="Roadster"> Roadster</option>
-      </select>
-      <select onChange={order_type} value="Type of Wash">
-      Type of Wash
-        <option type={'text'} value="Internal">Internal</option>
-        <option type={'text'} value="Externel">Externel</option>
-      </select>
-      
-       
-       
-
-     <div > <div className="info">
-        <p>Time picker</p> </div> 
-      <DateTimePicker
-      onChange={setTime}
-      value={time_picker}/>
-    </div>
-
-
-
+        
+        <div className="question">
+        
+          <div className="question-answer">
+            
+           
+            
+           
+            <label>Auto Order</label>
+        <div className="question-answer">
+          <div>
+            <input
+              type="radio"
+              defaultValue="none"
+              id="radio_15"
+              name="contact"
+              value='1'
+              onChange={auto_order_weekly}
+            />
+            <label htmlFor="radio_15" className="radio" >
+              <span>Yes</span>
+            </label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              defaultValue="none"
+              id="radio_16"
+              name="contact"
+              value='0'
+              onChange={auto_order_weekly}
+            />
+            <label htmlFor="radio_16" className="radio" >
+              <span>No</span>
+            </label>
+          </div>
+          </div>
+        </div>
     
-    </div>
-    {/* Auto Order Input */}
-    <h3>Auto Order?</h3>
-    <div className="metod">
-      <div>
-        <input type="radio" id="radioOne" name="metod" value="1" onChange={auto_order_weekly}/>
-        <label htmlFor="radioOne" className="radio"> Yas</label>
+            
+      
+        
       </div>
-      <div>
-        <input type="radio" defaultValue="0" id="radioTwo" name="metod"  value="0" onChange={auto_order_weekly} />
-        <label htmlFor="radioTwo" className="radio">No</label>
+      <div className="btn-block">
+        <button type="submit"  onClick={clickHandel}>
+          Submit
+        </button>
       </div>
-    </div>
-        {/* Submit Button */}
-
-    <button  onClick={clickHandel}>
-      Submit
-    </button>
- { car_type+"   "}
- {order}
-
-
-</div>
-
-  {/* <div>
-  <label>NAME: </label>
-  <br/>
-  <input type={'text'} onChange={name_handle} />
+      <br></br>
+      <div class="alert alert-success" style= {{display: confirm}}  role="alert"> Service booked succefully, we will contact you back as soon as possible </div>
+      <div class="alert alert-danger" style= {{display: error}}  role="alert"> You need to fill the fields </div>
+      <div style= {{display: confirm}}><Rate/></div>
+    </form>
   </div>
-  <div>
-  <label>Phone number </label>
-  <br/>
-  <input type={'number'} onChange={phone_number} />
-  </div>
-  <div>
-  <label>EMAIL: </label>
-  <br/>
-  <input type={'text'} onChange={car_typee} />
-  </div>
-  <div>
-  <label>AGE: </label>
-  <br/>
-  <input type={'text'} onChange={locationn} />
-  </div>
-  <div>
-  <label>order: </label>
-  <br/>
-  <input type={'text'} onChange={order_type} />
-  </div>
-  <div>
-  <label>Order weekly </label>
-  <br/>
-  <input type={'number'} onChange={auto_order_weekly} />
-  </div>
-  <button onClick={clickHandel}>Insert</button>
-</> */}
-</>
-      )}
-    </div>
-  )
+  
+  
+  
+  
+  
+  
+   );
+ 
 }
 export default Form;

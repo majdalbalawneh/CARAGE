@@ -1,7 +1,10 @@
 import React from 'react'
+import Blog from './Blog'
 
 function Fact() {
   return (
+    <>
+
     <div className="facts" data-parallax="scroll" data-image-src="img/facts.jpg">
     <div className="container">
       <div className="row">
@@ -9,7 +12,7 @@ function Fact() {
           <div className="facts-item">
             <i className="fa fa-map-marker-alt" />
             <div className="facts-text">
-              <h3 data-toggle="counter-up">25</h3>
+              <h3 data-toggle="counter-up">12</h3>
               <p>Service Points</p>
             </div>
           </div>
@@ -44,6 +47,7 @@ function Fact() {
       </div>
     </div>
   </div>
+  </>
   )
 }
 

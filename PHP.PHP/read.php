@@ -1,13 +1,16 @@
 <?php
 require "./connection.php";
 
-// if (isset($_POST['login'])){
-    
-    // $email = ($_POST['email']);
-    $email =  $_REQUEST['email'];
+
+    $email    =  $_REQUEST['email'];
    
     $password = ($_REQUEST['password']);
     
+    $password = md5($password);
+
+    // if (isset($_POST['login'])){
+    
+    // $email = ($_POST['email']);
     
     // ensure that form fields are filled properly 
     
@@ -18,7 +21,7 @@ require "./connection.php";
     //     echo("password is  required ");
     // }
 //    if(count($errors) == 0){
-    $password = md5($password);
+  
     
     // $query = "SELECT * FROM users WHERE  email='$email';";
     // $result  = $conn->prepare($query);

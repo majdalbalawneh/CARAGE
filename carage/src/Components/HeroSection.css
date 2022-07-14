@@ -21,31 +21,48 @@ video {
   }
   
   .hero-container > h1 {
+    background-color: transparent;
+    color: #000;
+    font-size: 100px;
+    margin-top: -100px;}
+
+  #containerDiv{
+    position: relative;
+    top: -60vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 70%;
+    margin: auto;
+  }
+
+  .hero-container div h1 {
     color: #fff;
     font-size: 100px;
     margin-top: -100px;
-    position: relative;
-    top: -60vh;
+    /* position: relative;
+    top: -60vh; */
   }
   
-  .hero-container > p {
+  .hero-container div p {
     margin-top: 8px;
     color: #fff;
     font-size: 32px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
       'Lucida Sans', Arial, sans-serif;
-      position: relative;
-    top: -60vh;
+      /* position: relative;
+    top: -60vh; */
   }
   
   .hero-btns {
     margin-top: 32px;
-    position: relative;
-    top: -60vh;
+    /* position: relative;
+    top: -60vh; */
   }
   
   .hero-btns .btn {
     margin: 6px;
+    width: 54%;
+    font-size: large;
+    border: none;
   }
   
   .fa-play-circle {
@@ -53,19 +70,19 @@ video {
   }
   
   @media screen and (max-width: 960px) {
-    .hero-container > h1 {
+    .hero-container div h1 {
       font-size: 70px;
       margin-top: -150px;
     }
   }
   
   @media screen and (max-width: 768px) {
-    .hero-container > h1 {
+    .hero-container div h1 {
       font-size: 50px;
       margin-top: -100px;
     }
   
-    .hero-container > p {
+    .hero-container div p {
       font-size: 30px;
     }
   
@@ -76,5 +93,34 @@ video {
   
     .btn {
       width: 100%;
+    }
+    .hero-btns .btn  {
+    width: 81%;
+  }
+  }
+
+  @media (max-width: 650px){
+
+    .hero-btns .btn  {
+      width: 81%;
+    }
+
+    #containerDiv{
+      position: relative;
+      top: -60vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      width: 100%;
+      margin: auto;
+    }
+
+    .hero-container div h1 {
+      color: #fff;
+      font-size: 52px;
+      margin-top: -100px;
+    
+    }
+
+    .hero-container div p {
+      font-size: 20px;
     }
   }

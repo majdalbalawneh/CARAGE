@@ -12,7 +12,7 @@ function Testimonials() {
         </p>
       </blockquote>
       <h3>Aya Al-Sawa</h3>
-      <h4>Facebook</h4>
+      <img src='./img/testimonials/Aya.png' alt='testimonial' className='testimonialsImg'></img>
     </figcaption>
   </figure>
   <figure className="snip1533">
@@ -23,7 +23,7 @@ function Testimonials() {
         </p>
       </blockquote>
       <h3>Ghufran Al-Momani</h3>
-      <h4>Facebook</h4>
+      <img src='./img/testimonials/ghufran.png' alt='testimonial' className='testimonialsImg'></img>
     </figcaption>
   </figure>
   <figure className="snip1533">
@@ -34,7 +34,7 @@ function Testimonials() {
         </p>
       </blockquote>
       <h3>Bahaa Aldeen</h3>
-      <h4>Facebook</h4>
+      <img src='./img/testimonials/baha.png' alt='testimonial' className='testimonialsImg'></img>
     </figcaption>
   </figure>
 </>

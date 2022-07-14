@@ -1,10 +1,52 @@
-import React from 'react'
+import React, {useState}from 'react'
 import Header from './Components/Header'
 import SubHeader from './Components/SubHeader'
+import axios from 'axios'
 
 function Contact ()  {
 
+  const [confirm, setConfirm] = useState('none');
+  const [error, setErorr] = useState('none');
+
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState();
+
+
+  const name_handle = (e)=>{setName(e.target.value)}
+  const email_handle = (e)=>{setEmail(e.target.value)}
+
+  const subject_handle = (e)=>{setSubject(e.target.value)}
+  const message_handle = (e)=>{setMessage(e.target.value)}
+
 const notification = ()=>{
+  if(name == '' || email == '' || message == '')
+  {
+    setErorr('block')
+
+  }else
+  {
+    axios.get("http://localhost/carage/carage_backend/contact.php?name="+name+"&email="+email+"&subject="+subject+"&message="+message).then(
+
+ setConfirm('block') ,
+ setErorr('none'),
+ document.getElementById('name').value = "",
+ document.getElementById('email').value = "",
+ document.getElementById('subject').value = "",
+ document.getElementById('message').value = ""
+
+ );
+  }
+
+
+
+
+
+
+
+
 
 }
 
@@ -50,12 +92,16 @@ const notification = ()=>{
       </div>
       <div className="col-md-7">
         <div className="contact-form">
+        <div class="alert alert-success" style= {{display: confirm}}  role="alert"> Message sent succefully, we will contact you back as soon as possible </div>
+        <div class="alert alert-danger" style= {{display: error}}  role="alert"> You need to fill the fields </div>
+
           <div id="success" />
-          <form name="sentMessage" id="contactForm" noValidate="novalidate">
+          <div name="sentMessage" id="contactForm" noValidate="novalidate">
             <div className="control-group">
               <input
                 type="text"
                 className="form-control"
+                onChange={name_handle}
                 id="name"
                 placeholder="Your Name"
                 required="required"
@@ -67,6 +113,8 @@ const notification = ()=>{
               <input
                 type="email"
                 className="form-control"
+                onChange={email_handle}
+
                 id="email"
                 placeholder="Your Email"
                 required="required"
@@ -78,6 +126,8 @@ const notification = ()=>{
               <input
                 type="text"
                 className="form-control"
+                onChange={subject_handle}
+
                 id="subject"
                 placeholder="Subject"
                 required="required"
@@ -90,6 +140,8 @@ const notification = ()=>{
                 className="form-control"
                 id="message"
                 placeholder="Message"
+                onChange={message_handle}
+
                 required="required"
                 data-validation-required-message="Please enter your message"
                 defaultValue={""}
@@ -106,7 +158,9 @@ const notification = ()=>{
                 Send Message
               </button>
             </div>
-          </form>
+          </div>
+     
+   
         </div>
       </div>
       <div className="col-md-12">

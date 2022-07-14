@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{ useState }  from 'react';
 import { Link } from 'react-router-dom';
 import Home from '../Home';
 import About from '../About';
@@ -6,6 +6,49 @@ import Contact from '../Contact';
 
 
 function Navbar() {
+  let id = sessionStorage.getItem("user_id");
+
+  let state = false ;
+  console.log(id+"      ");
+
+  if( id > 0 )
+  {
+    console.log("sheesh");
+    state = true;
+  }
+
+      const [is_logged,set_logged] = useState(state);
+
+
+
+  // let is_logged = false;
+  console.log(id+"      "+is_logged);
+
+ 
+  
+  
+  
+
+  // const is_loggged = ()=>
+  // {
+    
+
+  //     return is_logged;
+      
+   
+  //   }
+
+
+  
+  
+
+   const logout =()=>{
+
+    sessionStorage.setItem("user_id" , null);
+    // console.log("heh"+id+is_logged);
+    set_logged(false);
+
+   }                     
   return (
     <>
       <>
@@ -46,9 +89,9 @@ function Navbar() {
       <div className="col-lg-4 col-md-5">
           <div className="logo">
             <Link to='/'>
-              <h1>
+              <h2>
                 CAR<span>AGE</span>
-              </h1>
+              </h2>
             </Link>
           </div>
         </div>
@@ -67,7 +110,7 @@ function Navbar() {
         >
           <div className="navbar-nav mr-auto">
           <Link to='/'>
-            <a href="index.html" className="nav-item nav-link active">
+            <a href="index.html" className="nav-item nav-link ">
               Home
             </a>
             </Link>
@@ -76,13 +119,6 @@ function Navbar() {
               Services
             </a>
             </Link>
-
-            <Link to='/ Wash'>
-            <a href="Car_wash.js " className="nav-item nav-link">
-           Single pages
-            </a>
-            </Link>
-
 
             <Link to='/About'>
             <a href="about.html" className="nav-item nav-link ">
@@ -94,14 +130,49 @@ function Navbar() {
               Contact
             </a>
             </Link>
+
+
+
+            
           </div>
+
+       
+
           <div className="ml-auto">
-            <Link to='/SignUp'>
+{is_logged ? 
+(
+  <div>
+  
+           {/* <div className='welcome'>welcome</div>  */}
+
+           <a className="btn btn-custom" onClick={logout}>
+              Log out
+            </a>
+
+</div>
+
+):
+(
+              
+
+ <Link to='/SignUp'>
             <a className="btn btn-custom" href="#">
               Sign Up
             </a>
             </Link>
+
+              )
+}
           </div>
+          
+          
+         
+          
+
+
+
+         
+         
         </div>
       </nav>
     </div>

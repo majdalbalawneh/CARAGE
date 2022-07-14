@@ -130,7 +130,7 @@ export default class UserForm extends Component {
                     <label>Name</label>
                     <input
                         type="text"
-                        className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
+                        className={isError.name.length > 0 ? "is-invalid form-control regForm" : "form-control regForm"}
                         name="name"
                         onChange={this.formValChange}
                     />
@@ -143,7 +143,7 @@ export default class UserForm extends Component {
                     <label>Email</label>
                     <input
                         type="email"
-                        className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
+                        className={isError.email.length > 0 ? "is-invalid form-control regForm" : "form-control regForm"}
                         name="email"
                         onChange={this.formValChange}
                     />
@@ -156,7 +156,7 @@ export default class UserForm extends Component {
                     <label>Password</label>
                     <input
                         type="password"
-                        className={isError.password.length > 0 ? "is-invalid form-control" : "form-control"}
+                        className={isError.password.length > 0 ? "is-invalid form-control regForm" : "form-control regForm"}
                         name="password"
                         onChange={this.formValChange}
                     />
@@ -169,7 +169,7 @@ export default class UserForm extends Component {
                     <label>phone_number</label>
                     <input
                         type="tel"
-                        className={isError.phone_number.length > 0 ? "is-invalid form-control" : "form-control"}
+                        className={isError.phone_number.length > 0 ? "is-invalid form-control regForm" : "form-control regForm"}
                         name="phone_number"
                         onChange={this.formValChange}
                     />
@@ -179,7 +179,11 @@ export default class UserForm extends Component {
                     )}
                 </div>
 
+                <div class="BTNcontainer">
+                <div class="center">
                 <button type="submit" className="btn " id="regBtn">Sign Up </button>
+                </div>
+                </div>
                 <p id='regP'>Already have an account? <a href="/Login">Login</a></p>
                 
                 </div>

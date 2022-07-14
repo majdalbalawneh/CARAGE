@@ -1,6 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
+import axios from 'axios'
+import emailjs from 'emailjs-com'
 
 function Footer() {
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+
+  const name_handle = (e)=>{setName(e.target.value)}
+  const email_handle = (e)=>{setEmail(e.target.value)}
+
+  const submit = (e) => 
+  {
+    e.preventDefault();
+
+    emailjs.sendForm('service_padpavu', 'template_z5hfatv', e.target, '_ChPQ3YSwY1mr6KIH')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+
+    console.log("working");
+    axios.get('http://localhost/carage/PHP.PHP/new_settler.php?name='+name+'&email='+email).then(
+
+      document.getElementById('name').value = "",
+      document.getElementById('email').value = "",
+
+    )
+
+  }
   return (
     <>
       <>
@@ -65,11 +93,11 @@ function Footer() {
         <div className="col-lg-4 col-md-6">
           <div className="footer-newsletter">
             <h2>Newsletter</h2>
-            <form>
-              <input className="form-control" placeholder="Full Name" />
-              <input className="form-control" placeholder="Email" />
-              <button className="btn btn-custom">Submit</button>
-            </form>
+            <form onSubmit={submit}>
+              <input className="form-control" id='name' name='name' onChange={name_handle} placeholder="Full Name" />
+              <input className="form-control" id='email' name='email' onChange={email_handle} placeholder="Email" />
+              <button type='submit' className="btn btn-custom" >Submit</button>
+              </form>
           </div>
         </div>
       </div>

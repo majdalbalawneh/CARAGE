@@ -1,11 +1,11 @@
 <?php
 require "./connection.php";
 
-$name = $_REQUEST['name'];
+$name         = $_REQUEST['name'];
 $phone_number = $_REQUEST['phone_number'];
-$email = $_REQUEST['email'];
-$password = $_REQUEST['password'];
-$location = $_REQUEST['location'];
+$email        = $_REQUEST['email'];
+$password     = $_REQUEST['password'];
+$location     = $_REQUEST['location'];
 
 $password = md5($password);
 

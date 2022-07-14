@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
+import React, {useState, useEffect} from "react";
 import SubHeader from './SubHeader'
 import axios from 'axios'
+import Show_blog from "./Show_blog";
+
 
 function Blog() {
 
     const [Blog,setBlog]=useState([]);
 
-    // componentDidMount(){
-         axios.get(`https://newsdata.io/api/1/news?apikey=pub_9038205f94a64ffae1ffc81b3d78f90d46ca&q=cars `)
-          .then(res => {
-            console.log(res.data);
-            // setBlog( res.data.results );
-            // console.log(Blog);
-          })
+    
+  useEffect(() => {
+      const loadBlog = async () => {
+      const response = await axios.get("https://newsdata.io/api/1/news?apikey=pub_9038205f94a64ffae1ffc81b3d78f90d46ca&q=cars%20AND%20automobile ");
+     
 
-    // }
+      setBlog(response.data.results);
+  };
+
+  loadBlog();
+  }, []);
+ let i=0;
 
   return (
     <div className="blog">
@@ -24,33 +29,32 @@ function Blog() {
         
 {/* ////////////////////// */}
 
-{Blog.map((blog)=>(
-            <div className="col-lg-4">
-            <div className="blog-item">
-              <div className="blog-img">
-                <img src="img/blog-1.jpg" alt="Image" />
-                <div className="meta-date">
-                  <span>01</span>
-                  <strong>Jan</strong>
-                  <span>2045</span>
-                </div>
-              </div>
-              <div className="blog-text">
-                <h3>
-                  <a href="#">{blog.title}</a>
-                </h3>
-                <p>
-                {blog.description}
-                </p>
-              </div>
-              
-            </div>
-          </div>
-          ))}
+{Blog.slice(0,3).map((blog,index)=>(
+
+           <div className="col-lg-4">
+           <div className="blog-item">
+             <div className="blog-img">
+               <img src={blog.image_url?blog.image_url:'./img/cars news.png'} alt="Image" className="blogImg"/>
+             
+             </div>
+             <div className="blog-text">
+               <h3>
+                 <a href={blog.link} target="_blank">{blog.title}</a>
+               </h3>
+               <p>
+               {blog.description.slice(0,200)}
+               </p>
+             </div>
+             
+           </div>
+         </div>
+
+        )
+        )}
 {/* /////////////////// */}
 
 
-        <div className="col-lg-4">
+        {/* <div className="col-lg-4">
           <div className="blog-item">
             <div className="blog-img">
               <img src="img/blog-2.jpg" alt="Image" />
@@ -121,7 +125,7 @@ function Blog() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   </div>

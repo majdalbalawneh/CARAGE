@@ -5,6 +5,7 @@ import Fact from './Components/Fact';
 import HeroSection from './Components/HeroSection';
 import ServicesGrid from './Components/ServicesGrid';
 import SubHeader from './Components/SubHeader';
+import Blog from './Components/Blog';
 
 
 
@@ -174,7 +175,7 @@ function Home() {
   </div>
   {/* Testimonial End */}
   {/* Blog Start */}
-  
+  <Blog/>
   {/* Blog End */}
 </>
 

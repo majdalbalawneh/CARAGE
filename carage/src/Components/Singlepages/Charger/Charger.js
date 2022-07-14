@@ -33,72 +33,7 @@ function Charger() {
         });
     }
 
-    return (  
-        <>
-            
-              
-<div className="main-block">
-  <h1>Car Chsrge </h1>
-    <div className="info">
- 
-           
-    <input type={'text'} onChange={name_handle}  placeholder="Full Name" />
 
-    <input type={'number'} onChange={phone_number}  placeholder="Phone number" />
-      <input type={'text'} onChange={locationn}  placeholder="Event location" />
-   
-      <select onChange={car_typee}>  
-        Type of Car
-        <option  type='text' value="Sedan" >Sedan</option>
-        <option  type='text' value="CUV" >CUV</option>
-        <option  type='text' value="Hatchback">Hatchback</option>
-        <option  type='text' value="Coupe"> Coupe</option>
-        <option  type='text' value="Roadster"> Roadster</option>
-      </select>
-      <select onChange={order_type} value="Type of Wash">
-      Type of Wash
-        <option type={'text'} value="Internal">Internal</option>
-        <option type={'text'} value="Externel">Externel</option>
-      </select>
-      
-       
-       
-
-     <div > <div className="info">
-        <p>Time picker</p> </div> 
-      <DateTimePicker
-      onChange={setTime}
-      value={time_picker}/>
-    </div>
-
-
-
-    
-    </div>
-    {/* Auto Order Input */}
-    <h3>Auto Order?</h3>
-    <div className="metod">
-      <div>
-        <input type="radio" id="radioOne" name="metod" value="1" onChange={auto_order_weekly}/>
-        <label htmlFor="radioOne" className="radio"> Yas</label>
-      </div>
-      <div>
-        <input type="radio" defaultValue="0" id="radioTwo" name="metod"  value="0" onChange={auto_order_weekly} />
-        <label htmlFor="radioTwo" className="radio">No</label>
-      </div>
-    </div>
-        {/* Submit Button */}
-
-    <button  onClick={clickHandel}>
-      Submit
-    </button>
- { car_type+"   "}
- {order}
-
-
-</div>
-        </>
-    );
 }
 
 export default Charger;

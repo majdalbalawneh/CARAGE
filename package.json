@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "emailjs-com": "^3.2.0",
+    "react-datetime-picker": "^3.5.0"
+  }
+}
